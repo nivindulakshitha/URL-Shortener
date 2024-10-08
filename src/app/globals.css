@@ -11,13 +11,12 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Manrope", Arial, Helvetica, sans-serif;
 }
 
 .manrope {
   font-family: "Manrope", sans-serif;
   font-optical-sizing: auto;
-  font-weight: bold;
   font-style: normal;
 }
 
@@ -31,10 +30,14 @@ body {
   }
 
   .form-element {
-    @apply flex flex-row gap-3 justify-start align-middle sm:p-12 p-24 bg-gray-400;
+    @apply flex flex-col gap-3 justify-start align-middle sm:p-12 p-24;
   }
   
   .head-text {
-    @apply justify-self-center font-bold text-2xl text-center whitespace-nowrap manrope;
+    @apply justify-self-center font-bold text-2xl text-center whitespace-nowrap tracking-tight leading-10;
+  }
+
+  .url-input {
+    @apply p-4 rounded-xl bg-secondary text-foreground;
   }
 }
