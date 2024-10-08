@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root {
   --background: #ffffff;
@@ -11,13 +12,18 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "Manrope", Arial, Helvetica, sans-serif;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 .manrope {
-  font-family: "Manrope", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+}
+
+.manrope-semibold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
 }
 
 @layer utilities {
@@ -30,14 +36,30 @@ body {
   }
 
   .form-element {
-    @apply flex flex-col gap-3 justify-start align-middle sm:p-12 p-24;
+    @apply flex w-2/5 flex-col justify-center items-center align-middle sm:p-12 p-24;
+  }
+
+  .form-element *:not(.head-text, span:last-child) {
+    @apply my-3;
   }
   
   .head-text {
-    @apply justify-self-center font-bold text-2xl text-center whitespace-nowrap tracking-tight leading-10;
+    @apply justify-self-center manrope-semibold text-2xl text-center whitespace-nowrap tracking-tight leading-10;
   }
 
   .url-input {
-    @apply p-4 rounded-xl bg-secondary text-foreground;
+    @apply p-4 w-full rounded-xl bg-secondary text-foreground text-sm outline-none text-tertiory mx-4;
+  }
+
+  button {
+    @apply bg-primary w-full mx-4 rounded-xl text-white px-4 h-[40px] text-sm leading-5 tracking-wide;
+  }
+
+  .form-element span {
+    @apply self-start text-tertiory leading-3 text-sm;
+  }
+
+  .form-element span:last-child {
+    @apply justify-self-center text-black manrope-semibold text-[18px] self-start whitespace-nowrap tracking-tight leading-10;
   }
 }
