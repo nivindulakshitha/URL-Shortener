@@ -1,22 +1,32 @@
 "use client";
 import { Check, Copy, LoaderCircle } from 'lucide-react';
 import React, { useRef, useState } from 'react'
+import validator from 'validator';
 
 const Form = () => {
 	const shortUrlRef = useRef<HTMLInputElement | null>(null);
+	const longUrlRef = useRef<HTMLInputElement | null>(null);
 	const [shortUrl, setShortUrl] = useState('');
 	const [copying, setCopying] = useState(false);
 	const [loading, setLoading] = useState(false);
 
 	const handleSubmit = () => {
 		setLoading(true)
+		const longUrl = longUrlRef?.current?.value || '';
+		
+		if (!validator.isURL(longUrl, {require_protocol: true})) {
+			alert("Valied URL is required.")
+			setLoading(false)
+			return
+		}
+
 		setShortUrl('')
 		fetch('/asas', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ longUrl: 'https://www.google.com' }),
+			body: JSON.stringify({ longUrl: longUrl }),
 		})
 		.then((res) => res.json())
 		.then((data) => {
@@ -47,7 +57,7 @@ const Form = () => {
 	return (
 		<div className='form-element'>
 			<h2 className="head-text">URL Shortener</h2>
-			<input className='url-input' type="url" name="long-url" id="long-url" required placeholder='Enter a long URL to shorten' />
+			<input ref={longUrlRef} className='url-input' type="url" name="long-url" id="long-url" required placeholder='Enter a long URL to shorten' />
 			<button type='submit' onClick={handleSubmit} disabled={loading}>
 				{ loading ? "Shortening..." : "Shorten URL" }
 				{ loading? <LoaderCircle className="animate-spin" /> : null }
