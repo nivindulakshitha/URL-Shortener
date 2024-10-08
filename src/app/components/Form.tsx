@@ -4,15 +4,31 @@ import React, { useRef, useState } from 'react'
 
 const Form = () => {
 	const shortUrlRef = useRef<HTMLInputElement | null>(null);
+	const [shortUrl, setShortUrl] = useState('');
 	const [copying, setCopying] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const handleInputLongUrl = () => {
-		console.log("input long url")
-	}
 
 	const handleSubmit = () => {
 		setLoading(true)
-		console.log("submit")
+		setShortUrl('')
+		fetch('/asas', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ longUrl: 'https://www.google.com' }),
+		})
+		.then((res) => res.json())
+		.then((data) => {
+			console.log(data);
+			setLoading(false);
+			if (shortUrlRef.current) {
+				shortUrlRef.current.value = data.shortCode;
+			}
+		})
+		.catch((error) => {
+			alert('Error: ' + error.message);
+		});
 	}
 
 	const handleCopy = () => {
@@ -31,7 +47,7 @@ const Form = () => {
 	return (
 		<div className='form-element'>
 			<h2 className="head-text">URL Shortener</h2>
-			<input className='url-input' onInput={handleInputLongUrl} type="url" name="long-url" id="long-url" required placeholder='Enter a long URL to shorten' />
+			<input className='url-input' type="url" name="long-url" id="long-url" required placeholder='Enter a long URL to shorten' />
 			<button type='submit' onClick={handleSubmit} disabled={loading}>
 				{ loading ? "Shortening..." : "Shorten URL" }
 				{ loading? <LoaderCircle className="animate-spin" /> : null }
@@ -39,7 +55,7 @@ const Form = () => {
 			<span>Example: https://www.goole.com</span>
 			<span>Shortened URL</span>
 			<div className="copyble-area">
-				<input className='url-input' ref={shortUrlRef} onInput={handleInputLongUrl} type="url" name="short-url" id="short-url" required placeholder='Your URL shortened' disabled />
+				<input className='url-input' ref={shortUrlRef} type="url" name="short-url" id="short-url" required placeholder='Your URL shortened' disabled/>
 				{ 
 					!copying ? <Copy onClick={handleCopy}/> : <Check className='text-green-600 !opacity-70'/>				}
 			</div>

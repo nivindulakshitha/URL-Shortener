@@ -3,3 +3,9 @@ export declare interface routeGetParams {
         shortCode: string
     }
 }
+
+export declare interface routePostParams { 
+    body: {
+        longUrl: string
+    }
+}

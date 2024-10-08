@@ -15,7 +15,7 @@ export const getDb = async () => {
 }
 
 export const generateShortCode = async () => {
-    return nanoid(6);
+    return nanoid(6).toUpperCase();
 }
 
 export const shortCodeExists = async (shortCode: string) => {
@@ -33,7 +33,8 @@ export const saveUrl = async (longUrl: string) => {
         }
         shortCode = await generateShortCode();
     }
-    await db.collection('urls').insertOne({ longUrl, shortCode });
+    const result = await db.collection('urls').insertOne({ longUrl, shortCode });
+    return { result, shortCode };
 }
 
 export const getUrlByShortCode = async (shortCode: string) => {
