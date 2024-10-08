@@ -59,7 +59,15 @@ body {
     @apply self-start text-tertiory leading-3 text-sm;
   }
 
-  .form-element span:last-child {
+  .form-element span:nth-last-child(2) {
     @apply justify-self-center text-black manrope-semibold text-[18px] self-start whitespace-nowrap tracking-tight leading-10;
   }
+
+  .copyble-area {
+    @apply w-full my-0;
+  }
+
+    .copyble-area input {
+      @apply mx-0 my-0;
+    }
 }
