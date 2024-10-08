@@ -52,7 +52,7 @@ body {
 	}
 
 	button {
-		@apply bg-primary w-full mx-4 rounded-xl text-white px-4 h-[40px] text-sm leading-5 tracking-wide;
+		@apply flex flex-row gap-3 justify-center items-center bg-primary w-full mx-4 rounded-xl text-white px-4 h-[40px] text-sm leading-5 tracking-wide disabled:opacity-70;
 	}
 
 	.form-element span {
@@ -64,7 +64,7 @@ body {
 	}
 
 	.copyble-area {
-		@apply relative w-full flex flex-row !my-0;
+		@apply relative w-full flex flex-row items-center !my-0;
 	}
 
 	.copyble-area input {
@@ -72,6 +72,21 @@ body {
 	}
 
 	.copyble-area svg {
-		@apply absolute right-4 opacity-50;
+		@apply absolute right-4 opacity-50 w-5 h-5;
+	}
+
+	.animate-spin {
+		animation: spin 1s linear infinite;
+		width: 20px;
+		height: 20px;
+	}
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
 	}
 }
