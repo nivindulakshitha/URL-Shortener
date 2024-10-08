@@ -18,6 +18,9 @@ const Form = () => {
 			<button onClick={handleSubmit} disabled={loading}>
 				{ loading? "Shortening..." : "Shorten URL" }
 			</button>
+			<span>Example: https://www.goole.com</span>
+			<span>Shortened URL</span>
+			<input className='url-input' onInput={handleInputLongUrl} type="url" name="short-url" id="short-url" required placeholder='Your URL shortened' />
 		</div>
 	)
 }
