@@ -13,8 +13,8 @@ const Form = () => {
 	const handleSubmit = () => {
 		setLoading(true)
 		const longUrl = longUrlRef?.current?.value || '';
-		
-		if (!validator.isURL(longUrl, {require_protocol: true})) {
+
+		if (!validator.isURL(longUrl, { require_protocol: true })) {
 			alert("Valied URL is required.")
 			setLoading(false)
 			return
@@ -28,17 +28,19 @@ const Form = () => {
 			},
 			body: JSON.stringify({ longUrl: longUrl }),
 		})
-		.then((res) => res.json())
-		.then((data) => {
-			console.log(data);
-			setLoading(false);
-			if (shortUrlRef.current) {
-				shortUrlRef.current.value = data.shortCode;
-			}
-		})
-		.catch((error) => {
-			alert('Error: ' + error.message);
-		});
+			.then((response) => response.json())
+			.then((data) => {
+				setLoading(false);
+				if (shortUrlRef.current) {
+					shortUrlRef.current.value = data.shortCode;
+					setShortUrl(data.shortCode);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+				setLoading(false);
+				alert('Error: ' + error.message);
+			});
 	}
 
 	const handleCopy = () => {
@@ -46,9 +48,9 @@ const Form = () => {
 		if (shortUrl === '') {
 			alert("Shortened URL not found");
 		} else {
-			navigator.clipboard.writeText(shortUrl);
+			navigator.clipboard.writeText("https://briefurl.vercel.app/" +shortUrl);
 			setCopying(true);
-			setTimeout(() => { 
+			setTimeout(() => {
 				setCopying(false)
 			}, 3000);
 		}
@@ -59,15 +61,15 @@ const Form = () => {
 			<h2 className="head-text">URL Shortener</h2>
 			<input ref={longUrlRef} className='url-input' type="url" name="long-url" id="long-url" required placeholder='Enter a long URL to shorten' />
 			<button type='submit' onClick={handleSubmit} disabled={loading}>
-				{ loading ? "Shortening..." : "Shorten URL" }
-				{ loading? <LoaderCircle className="animate-spin" /> : null }
+				{loading ? "Shortening..." : "Shorten URL"}
+				{loading ? <LoaderCircle className="animate-spin" /> : null}
 			</button>
 			<span>Example: https://www.goole.com</span>
 			<span>Shortened URL</span>
 			<div className="copyble-area">
-				<input className='url-input' ref={shortUrlRef} type="url" name="short-url" id="short-url" required placeholder='Your URL shortened' disabled/>
-				{ 
-					!copying ? <Copy onClick={handleCopy}/> : <Check className='text-green-600 !opacity-70'/>				}
+				<input className='url-input' value={shortUrl} ref={shortUrlRef} type="url" name="short-url" id="short-url" required placeholder='Your URL shortened' disabled />
+				{
+					!copying ? <Copy onClick={handleCopy} /> : <Check className='text-green-600 !opacity-70' />}
 			</div>
 		</div>
 	)
