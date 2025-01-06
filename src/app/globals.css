@@ -68,7 +68,7 @@ body {
 	}
 
 	.copyble-area input {
-		@apply mx-0 !my-0;
+		@apply mx-0 !my-0 uppercase;
 	}
 
 	.copyble-area svg {
