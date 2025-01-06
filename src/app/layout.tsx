@@ -30,7 +30,7 @@ export default function RootLayout({
 				<link rel="shortcut icon" href="/icon/favicon.ico" type="image/x-icon" />
 				<link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-touch-icon.png"/>
 				<link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png"/>
-				<link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png"/>
+				<link rel="icon" href="https://logosandtypes.com/wp-content/uploads/2020/08/sas.svg"/>
 				<link rel="manifest" href="/icon/site.webmanifest"/>
 			</head>
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
