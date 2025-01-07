@@ -1,12 +1,9 @@
 import React from 'react'
 import Form from './components/Form'
-import { ThemeProvider } from 'next-themes'
 
-const Page = () => {	
+const Page = () => {
 	return (
-		<ThemeProvider attribute="class">
-			<Form />
-		</ThemeProvider>
+		<Form />
 	)
 }
 

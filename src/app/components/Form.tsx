@@ -1,18 +1,9 @@
 "use client";
 import { Check, Copy, LoaderCircle } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import React, { useRef, useState } from 'react'
 import validator from 'validator';
 
 const Form = () => {
-	const { systemTheme, setTheme } = useTheme();
-
-	if (systemTheme === 'dark') {
-		setTheme('dark')
-	} else {
-		setTheme('light')
-	}
-
 	const shortUrlRef = useRef<HTMLInputElement | null>(null);
 	const longUrlRef = useRef<HTMLInputElement | null>(null);
 	const [shortUrl, setShortUrl] = useState('');

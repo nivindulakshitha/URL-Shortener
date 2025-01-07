@@ -24,7 +24,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" className="dark">
 			<head>
 				<meta charSet="utf-8" />
 				<link rel="icon" href="https://logosandtypes.com/wp-content/uploads/2020/08/sas.svg"/>
