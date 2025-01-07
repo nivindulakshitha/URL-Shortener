@@ -8,10 +8,6 @@ const NotFoundNote = () => {
 	const searchParams = useSearchParams()
 	const code = searchParams.get('code')
 
-	if (!code) { 
-		window.location.href = '/'
-	}
-
 	return (
 		<>
 			{code != null && (

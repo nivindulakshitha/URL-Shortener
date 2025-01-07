@@ -6,7 +6,6 @@ import validator from 'validator';
 const Form = () => {
 	const shortUrlRef = useRef<HTMLInputElement | null>(null);
 	const longUrlRef = useRef<HTMLInputElement | null>(null);
-	const [shortUrl, setShortUrl] = useState('');
 	const [copying, setCopying] = useState(false);
 	const [loading, setLoading] = useState(false);
 
@@ -20,7 +19,6 @@ const Form = () => {
 			return
 		}
 
-		setShortUrl('')
 		fetch('/new', {
 			method: 'POST',
 			headers: {
@@ -34,7 +32,6 @@ const Form = () => {
 				setLoading(false);
 				if (shortUrlRef.current) {
 					shortUrlRef.current.value = `https://briefurl.vercel.app/${data.shortCode}`;
-					setShortUrl(data.shortCode);
 				}
 			})
 			.catch((error) => {
@@ -49,7 +46,7 @@ const Form = () => {
 		if (shortUrl === '') {
 			alert("Shortened URL not found");
 		} else {
-			navigator.clipboard.writeText("https://briefurl.vercel.app/" + shortUrl);
+			navigator.clipboard.writeText(shortUrl.toLowerCase());
 			setCopying(true);
 			setTimeout(() => {
 				setCopying(false)
@@ -68,7 +65,7 @@ const Form = () => {
 			<span>Example: https://www.goole.com</span>
 			<span>Shortened URL</span>
 			<div className="copyble-area">
-				<input className='url-input' value={shortUrl} ref={shortUrlRef} type="url" name="short-url" id="short-url" required placeholder='Your URL shortened' disabled />
+				<input className='url-input' ref={shortUrlRef} type="url" name="short-url" id="short-url" required placeholder='https://briefurl.vercel.app/' disabled />
 				{
 					!copying ? <Copy onClick={handleCopy} /> : <Check className='text-green-600 !opacity-70' />}
 			</div>
