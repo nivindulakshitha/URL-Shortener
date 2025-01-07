@@ -5,7 +5,7 @@ import { saveUrl, getUrlByShortCode } from '../db/services';
 export async function GET(req: NextRequest, { params }: routeGetParams) {
     const url = await getUrlByShortCode(params.shortCode);
     if (!url) {
-        return Response.redirect("http://localhost:3000/404");
+        return Response.redirect(`http://localhost:3000/404?code=${params.shortCode}`);
     }
     return Response.redirect(url.longUrl);
 }

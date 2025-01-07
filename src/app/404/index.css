@@ -7,7 +7,7 @@
 }
 
 .note-404 {
-	@apply text-8xl absolute opacity-5 font-bold -rotate-45 -translate-x-1/4 -translate-y-1/2 text-black dark:text-white;
+	@apply text-8xl absolute opacity-5 font-bold -rotate-45 -translate-x-1/2 -translate-y-1/2 text-black dark:text-white;
 }
 
 .link {
