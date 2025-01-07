@@ -5,7 +5,7 @@ import { saveUrl, getUrlByShortCode } from '../db/services';
 export async function GET(req: NextRequest, { params }: routeGetParams) {
     const url = await getUrlByShortCode(params.shortCode);
     if (!url) {
-        return new Response('Not Found', { status: 404 });
+        return Response.redirect("/404");
     }
     return Response.redirect(url.longUrl);
 }
