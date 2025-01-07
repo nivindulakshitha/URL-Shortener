@@ -2,7 +2,7 @@ import React from 'react'
 import Form from './components/Form'
 import { ThemeProvider } from 'next-themes'
 
-const page = () => {
+const Page = () => {	
 	return (
 		<ThemeProvider attribute="class">
 			<Form />
@@ -10,4 +10,4 @@ const page = () => {
 	)
 }
 
-export default page
+export default Page

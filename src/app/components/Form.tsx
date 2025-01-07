@@ -1,9 +1,18 @@
 "use client";
 import { Check, Copy, LoaderCircle } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import React, { useRef, useState } from 'react'
 import validator from 'validator';
 
 const Form = () => {
+	const { systemTheme, setTheme } = useTheme();
+
+	if (systemTheme === 'dark') {
+		setTheme('dark')
+	} else {
+		setTheme('light')
+	}
+
 	const shortUrlRef = useRef<HTMLInputElement | null>(null);
 	const longUrlRef = useRef<HTMLInputElement | null>(null);
 	const [shortUrl, setShortUrl] = useState('');
@@ -33,7 +42,7 @@ const Form = () => {
 				console.log(data);
 				setLoading(false);
 				if (shortUrlRef.current) {
-					shortUrlRef.current.value = data.shortCode;
+					shortUrlRef.current.value = `https://briefurl.vercel.app/${data.shortCode}`;
 					setShortUrl(data.shortCode);
 				}
 			})
@@ -49,7 +58,7 @@ const Form = () => {
 		if (shortUrl === '') {
 			alert("Shortened URL not found");
 		} else {
-			navigator.clipboard.writeText("https://briefurl.vercel.app/" +shortUrl);
+			navigator.clipboard.writeText("https://briefurl.vercel.app/" + shortUrl);
 			setCopying(true);
 			setTimeout(() => {
 				setCopying(false)
