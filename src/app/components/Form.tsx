@@ -14,7 +14,7 @@ const Form = () => {
 		setLoading(true)
 		const longUrl = longUrlRef?.current?.value || '';
 
-		if (!validator.isURL(longUrl, { require_protocol: true })) {
+		if (!validator.isURL(longUrl)) {
 			alert("Valied URL is required.")
 			setLoading(false)
 			return
