@@ -15,13 +15,13 @@ const Form = () => {
 		const longUrl = longUrlRef?.current?.value || '';
 
 		if (!validator.isURL(longUrl)) {
-			alert("Valied URL is required.")
+			alert("Valid URL is required.")
 			setLoading(false)
 			return
 		}
 
 		setShortUrl('')
-		fetch('/asas', {
+		fetch('/new', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
