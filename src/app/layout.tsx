@@ -24,7 +24,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" className="dark">
 			<head>
 				<meta charSet="utf-8" />
 				<link rel="shortcut icon" href="/icon/favicon.ico" type="image/x-icon" />

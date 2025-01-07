@@ -32,7 +32,7 @@ body {
 	}
 
 	body {
-		@apply flex flex-col h-screen justify-center items-center align-middle dark:bg-slate-500 dark:text-white;
+		@apply  flex flex-col h-screen justify-center items-center align-middle dark:bg-gray-950 dark:text-white;
 	}
 
 	.form-element {
@@ -48,19 +48,19 @@ body {
 	}
 
 	.url-input {
-		@apply p-4 w-full rounded-xl bg-secondary text-foreground text-sm outline-none text-tertiory mx-4;
+		@apply p-4 w-full rounded-xl bg-secondary dark:bg-gray-800 text-foreground text-sm outline-none text-tertiory dark:text-white mx-4;
 	}
 
 	button {
-		@apply flex flex-row gap-3 justify-center items-center bg-primary w-full mx-4 rounded-xl text-white px-4 h-[40px] text-sm leading-5 tracking-wide disabled:opacity-70;
+		@apply flex flex-row gap-3 justify-center items-center bg-primary dark:bg-opacity-70 w-full mx-4 rounded-xl text-white px-4 h-[40px] text-sm leading-5 tracking-wide disabled:opacity-70;
 	}
 
 	.form-element span {
-		@apply self-start text-tertiory leading-3 text-sm;
+		@apply self-start text-tertiory dark:text-white dark:text-opacity-50 leading-3 text-sm;
 	}
 
 	.form-element span:nth-last-child(2) {
-		@apply !text-[18px] text-black head-text;
+		@apply !text-[18px] text-black dark:text-white head-text;
 	}
 
 	.copyble-area {
@@ -68,7 +68,7 @@ body {
 	}
 
 	.copyble-area input {
-		@apply mx-0 !my-0 uppercase;
+		@apply mx-0 !my-0 lowercase;
 	}
 
 	.copyble-area svg {
