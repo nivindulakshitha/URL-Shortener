@@ -25,6 +25,10 @@ export const shortCodeExists = async (shortCode: string) => {
 }
 
 export const saveUrl = async (longUrl: string) => {
+    const isAlreadyShortened = await getUrlByLongUrl(longUrl);
+    if (isAlreadyShortened) {
+        return isAlreadyShortened;
+    }
     const db = await getDb();
     let shortCode = await generateShortCode();
     while (true) {

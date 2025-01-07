@@ -30,6 +30,7 @@ const Form = () => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
+				console.log(data);
 				setLoading(false);
 				if (shortUrlRef.current) {
 					shortUrlRef.current.value = data.shortCode;
