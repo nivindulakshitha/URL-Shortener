@@ -15,7 +15,7 @@ export const getDb = async () => {
 }
 
 export const generateShortCode = async () => {
-    return nanoid(6).toLowerCase();
+    return nanoid(6).toLowerCase().replaceAll('_', '');
 }
 
 export const shortCodeExists = async (shortCode: string) => {
