@@ -36,11 +36,11 @@ body {
 	}
 
 	.form-element {
-		@apply flex w-2/5 flex-col justify-center items-center align-middle sm:p-12 p-24;
+		@apply flex w-full flex-col justify-center items-center align-middle transition-all duration-500 sm:p-12 p-10 lg:p-24 md:w-1/2 md:p-16;
 	}
 
 	.form-element *:not(.head-text, span:last-child) {
-		@apply my-3;
+		@apply my-3 whitespace-pre-wrap;
 	}
 
 	.head-text {
